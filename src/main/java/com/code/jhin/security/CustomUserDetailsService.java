@@ -1,7 +1,7 @@
 package com.code.jhin.security;
 
 import com.code.jhin.model.username.User;
-import com.code.jhin.repository.UserRepository;
+import com.code.jhin.repository.userRepository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

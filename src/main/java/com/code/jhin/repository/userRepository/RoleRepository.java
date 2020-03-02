@@ -1,4 +1,4 @@
-package com.code.jhin.repository;
+package com.code.jhin.repository.userRepository;
 
 import com.code.jhin.model.username.Role;
 import com.code.jhin.model.username.RoleName;
