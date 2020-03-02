@@ -1,6 +1,6 @@
 package com.code.jhin.security;
 
-import com.code.jhin.model.User;
+import com.code.jhin.model.username.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,4 +1,4 @@
-package com.code.jhin.model;
+package com.code.jhin.model.username;
 
 public enum  RoleName {
     ROLE_USER,

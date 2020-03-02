@@ -1,4 +1,8 @@
-package com.code.jhin.model;
+package com.code.jhin.model.product;
+
+import com.code.jhin.model.order.Order;
+import com.code.jhin.model.product.Category;
+import com.code.jhin.model.product.Picture;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -29,6 +33,9 @@ public class Product {
 
     private boolean statusProduct;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     public Product() {
     }

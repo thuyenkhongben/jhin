@@ -1,5 +1,6 @@
-package com.code.jhin.model;
+package com.code.jhin.model.username;
 
+import com.code.jhin.model.username.RoleName;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;

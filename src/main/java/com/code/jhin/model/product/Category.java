@@ -1,4 +1,4 @@
-package com.code.jhin.model;
+package com.code.jhin.model.product;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

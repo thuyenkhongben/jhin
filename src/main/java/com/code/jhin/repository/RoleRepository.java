@@ -1,7 +1,7 @@
 package com.code.jhin.repository;
 
-import com.code.jhin.model.Role;
-import com.code.jhin.model.RoleName;
+import com.code.jhin.model.username.Role;
+import com.code.jhin.model.username.RoleName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

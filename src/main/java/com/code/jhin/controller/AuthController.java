@@ -1,9 +1,9 @@
 package com.code.jhin.controller;
 
 import com.code.jhin.exception.AppException;
-import com.code.jhin.model.Role;
-import com.code.jhin.model.RoleName;
-import com.code.jhin.model.User;
+import com.code.jhin.model.username.Role;
+import com.code.jhin.model.username.RoleName;
+import com.code.jhin.model.username.User;
 import com.code.jhin.playLoad.request.LoginRequest;
 import com.code.jhin.playLoad.request.SignUpRequest;
 import com.code.jhin.playLoad.response.ApiResponse;
