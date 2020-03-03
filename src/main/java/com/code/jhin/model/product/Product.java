@@ -24,7 +24,7 @@ public class Product {
     @NotBlank
     private String descriptionProduct;
 
-    @OneToMany(targetEntity = Picture.class , mappedBy = "picture")
+    @OneToMany(targetEntity = Picture.class )
     private List<Picture>pictures;
 
     @ManyToOne

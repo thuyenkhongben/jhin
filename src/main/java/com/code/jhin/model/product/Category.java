@@ -15,7 +15,7 @@ public class Category {
     @NotBlank
     private String  categoryName;
 
-    @OneToMany(targetEntity = Product.class , mappedBy = "category")
+    @OneToMany(targetEntity = Product.class)
     private List<Product>products;
 
     public Category() {

@@ -29,7 +29,7 @@ public class Order {
     private String addressUser;
 
 
-    @OneToMany(targetEntity = Product.class , mappedBy = "products")
+    @OneToMany(targetEntity = Product.class )
     private List<Product> products;
 
     public Order() {
