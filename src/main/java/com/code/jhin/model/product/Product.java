@@ -39,15 +39,15 @@ public class Product {
 
     public Product() {
     }
-    public Product(@NotBlank String nameProduct, @NotBlank Double priceProduct , @NotBlank String descriptionProduct ,
-                   List<Picture>pictures , Category category, boolean statusProduct){
-        this.nameProduct = nameProduct;
-        this.priceProduct = priceProduct;
-        this.descriptionProduct = descriptionProduct;
-        this.pictures = pictures;
-        this.category = category;
-        this.statusProduct = statusProduct;
-    }
+//    public Product(@NotBlank String nameProduct, @NotBlank Double priceProduct , @NotBlank String descriptionProduct ,
+//                   List<Picture>pictures , Category category, boolean statusProduct){
+//        this.nameProduct = nameProduct;
+//        this.priceProduct = priceProduct;
+//        this.descriptionProduct = descriptionProduct;
+//        this.pictures = pictures;
+//        this.category = category;
+//        this.statusProduct = statusProduct;
+//    }
 
     public Long getProductId() {
         return productId;

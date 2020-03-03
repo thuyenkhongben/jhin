@@ -28,21 +28,22 @@ public class Order {
     @NotBlank
     private String addressUser;
 
-    @JsonIgnore
+
     @OneToMany(targetEntity = Product.class , mappedBy = "products")
     private List<Product> products;
 
     public Order() {
     }
-    public Order(@NotBlank String nameOder , Double totalProductPrice, Date dateOder , Date dateReceive ,
-                 String addressUser, List<Product> products) {
-        this.nameOder = nameOder;
-        this.totalProductPrice = totalProductPrice;
-        this.dateOder= dateOder;
-        this.dateReceive = dateReceive;
-        this.addressUser = addressUser;
-        this.products = products;
-    }
+//
+//    public Order(@NotBlank String nameOder , Double totalProductPrice, Date dateOder , Date dateReceive ,
+//                 String addressUser , List<Product> products) {
+//        this.nameOder = nameOder;
+//        this.totalProductPrice = totalProductPrice;
+//        this.dateOder= dateOder;
+//        this.dateReceive = dateReceive;
+//        this.addressUser = addressUser;
+//        this.products = products;
+//    }
 
     public Long getOderId() {
         return oderId;
