@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PictureService {
+   List<Picture> findByAllProductId(Long id);
+
     List<Picture> findAllPicture();
 
     Optional<Picture> findByIdPicture(Long id);

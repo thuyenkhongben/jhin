@@ -104,4 +104,12 @@ public class Product {
     public void setStatusProduct(boolean statusProduct) {
         this.statusProduct = statusProduct;
     }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }
