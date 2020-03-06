@@ -10,14 +10,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
-import java.nio.file.OpenOption;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
     @Autowired
     ProductService productService;
 
@@ -40,7 +39,7 @@ public class ProductController {
             productService.save(product);
             return new ResponseEntity<>(product,HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
     @GetMapping(value = "/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
@@ -72,9 +71,9 @@ public class ProductController {
 
             return new ResponseEntity<Product>(product1.get(),HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-
+//
     @DeleteMapping("/{id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable Long id){
        Optional<Product>product = productService.findByIdProduct(id);

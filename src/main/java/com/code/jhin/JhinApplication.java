@@ -49,6 +49,8 @@ public class JhinApplication {
     public OrderService orderService() {
         return new OrderServiceImpl();
     }
+
+
     @Bean
     public PictureService pictureService() {
         return new PictureServiceImpl();

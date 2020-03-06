@@ -1,6 +1,7 @@
 package com.code.jhin.service.productServiceImpl;
 
 import com.code.jhin.model.product.Product;
+import com.code.jhin.repository.productRepository.PictureRepository;
 import com.code.jhin.repository.productRepository.ProductRepository;
 import com.code.jhin.service.productService.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
