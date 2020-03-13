@@ -5,10 +5,11 @@ import com.code.jhin.model.product.Product;
 import com.code.jhin.repository.orderRepository.OrderRepository;
 import com.code.jhin.service.orderServie.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderRepository orderRepository;

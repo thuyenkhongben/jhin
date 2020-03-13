@@ -5,10 +5,11 @@ import com.code.jhin.repository.productRepository.PictureRepository;
 import com.code.jhin.repository.productRepository.ProductRepository;
 import com.code.jhin.service.productService.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
