@@ -1,6 +1,5 @@
 package com.code.jhin.controller;
 
-import com.code.jhin.exception.AppException;
 import com.code.jhin.model.username.Role;
 import com.code.jhin.model.username.RoleName;
 import com.code.jhin.model.username.User;
@@ -27,11 +26,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
-import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -90,38 +88,43 @@ public class AuthController {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
         }
-    }
 
-//    @PostMapping("/signup")
-//    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-//        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-//            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
-//                    HttpStatus.BAD_REQUEST);
-//        }
-//
-//        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-//            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
-//                    HttpStatus.BAD_REQUEST);
-//        }
-//
-//        // Creating user's account
-//        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-//                signUpRequest.getEmail(), signUpRequest.getPassword());
-//
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//
-//        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-//                .orElseThrow(() -> new AppException("User Role not set."));
-//
-//        user.setRoles(Collections.singleton(userRole));
-//
-//        User result = userRepository.save(user);
+
+    @PostMapping("/signup")
+    public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return new ResponseEntity<ApiResponse>(
+                    new ApiResponse(false, "Username is already taken!", null ),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+            return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Email Address already in use!", null ),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        // Creating user's account
+        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
+                signUpRequest.getEmail(),passwordEncoder.encode(signUpRequest.getPassword()));
+
+        Set<Role>roles = new HashSet<>();
+
+        Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                .orElseThrow(() -> new RuntimeException("Fail! -> Cause:User Role not set."));
+        roles.add(adminRole);
+
+        user.setRoles(roles);
+
+
+        User result = userRepository.save(user);
 //
 //        URI location = ServletUriComponentsBuilder
 //                .fromCurrentContextPath().path("/api/users/{username}")
 //                .buildAndExpand(result.getUsername()).toUri();
-//
-//        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
-//    }
+
+        return new  ResponseEntity<ApiResponse>(new ApiResponse(true,"User Register successfully" , null),
+                HttpStatus.OK);
+}
+}
 
 

@@ -5,11 +5,15 @@ public class ApiResponse {
     private String message;
     private Object data;
 
-    public ApiResponse(Boolean success, String message , Object data) {
+    public ApiResponse() {
+    }
+
+    public ApiResponse(boolean success, String message , Object data) {
         this.success = success;
         this.message = message;
         this.data = data;
     }
+
 
     public Object getData() {
         return data;
