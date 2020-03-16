@@ -90,8 +90,8 @@ public class AuthController {
         }
 
 
-    @PostMapping("/signup")
-    public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+    @PostMapping("/signup/bốthiênhạ")
+    public ResponseEntity<ApiResponse> registerAdmin(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<ApiResponse>(
                     new ApiResponse(false, "Username is already taken!", null ),
@@ -109,7 +109,7 @@ public class AuthController {
 
         Set<Role>roles = new HashSet<>();
 
-        Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+        Role adminRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new RuntimeException("Fail! -> Cause:User Role not set."));
         roles.add(adminRole);
 
@@ -122,9 +122,42 @@ public class AuthController {
 //                .fromCurrentContextPath().path("/api/users/{username}")
 //                .buildAndExpand(result.getUsername()).toUri();
 
-        return new  ResponseEntity<ApiResponse>(new ApiResponse(true,"User Register successfully" , null),
+        return new  ResponseEntity<ApiResponse>(new ApiResponse(true,"Admin Register successfully" , null),
                 HttpStatus.OK);
 }
+
+    @PostMapping("/signup")
+    public ResponseEntity<ApiResponse>registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+        //check xem username đã tồn tại chưa
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return new ResponseEntity<ApiResponse>(new ApiResponse(false , "Username is already taken!" , null),
+                    HttpStatus.BAD_REQUEST);
+        }
+        //check xem email đó đã tồn tại hay chưa
+        if (userRepository.existsByEmail(signUpRequest.getEmail())){
+            return new ResponseEntity<ApiResponse>(new ApiResponse(false , " Email is alreday taken!" , null),
+                    HttpStatus.BAD_REQUEST);
+        }
+        //create user
+        User user = new User(signUpRequest.getName() , signUpRequest.getUsername() ,signUpRequest.getEmail() ,
+                passwordEncoder.encode(signUpRequest.getPassword()));
+
+        //create role user
+        Set<Role>roles = new HashSet<>();
+
+        Role userRole = roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() ->
+                new RuntimeException("Fail! -> Cause:User Role not set."));
+
+        roles.add(userRole);
+
+        user.setRoles(roles);
+
+        User result = userRepository.save(user);
+
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true , "User Register Successfully" , null),
+                HttpStatus.OK);
+
+    }
 }
 
 
