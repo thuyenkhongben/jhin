@@ -9,10 +9,10 @@ public interface CategoryService {
 
     List<Category> findAllCategory();
 
-    Optional<Category> findByIdCategory(Long id);
+    Optional<Category> findByIdCategory(Long categoryId);
 
     void save(Category category);
 
-    void remove( Long id);
+    void remove( Long categoryId);
 
 }

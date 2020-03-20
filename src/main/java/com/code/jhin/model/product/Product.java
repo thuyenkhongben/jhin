@@ -15,23 +15,26 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productId;
 
-    @NotBlank
+
     private String nameProduct;
 
-    @NotBlank
+
     private Double priceProduct;
 
-    @NotBlank
+
+    private Long amount;
+
+
     private String descriptionProduct;
 
-    @OneToMany(targetEntity = Picture.class )
+    @OneToMany(targetEntity = Picture.class  , cascade = CascadeType.ALL)
     private List<Picture>pictures;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
-    private boolean statusProduct;
+    private Boolean statusProduct;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
@@ -39,14 +42,24 @@ public class Product {
 
     public Product() {
     }
-    public Product(@NotBlank String nameProduct, @NotBlank Double priceProduct , @NotBlank String descriptionProduct ,
-                   List<Picture>pictures , Category category, boolean statusProduct){
+    public Product( String nameProduct, Double priceProduct , Long amount , String descriptionProduct ,
+                   List<Picture>pictures , Category category, Boolean statusProduct , Order order){
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
+        this.amount = amount;
         this.descriptionProduct = descriptionProduct;
         this.pictures = pictures;
         this.category = category;
         this.statusProduct = statusProduct;
+        this.order = order;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
     }
 
     public Long getProductId() {
@@ -97,11 +110,11 @@ public class Product {
         this.category = category;
     }
 
-    public boolean isStatusProduct() {
+    public Boolean isStatusProduct() {
         return statusProduct;
     }
 
-    public void setStatusProduct(boolean statusProduct) {
+    public void setStatusProduct(Boolean statusProduct) {
         this.statusProduct = statusProduct;
     }
 

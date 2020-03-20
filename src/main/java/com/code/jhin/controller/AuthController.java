@@ -90,7 +90,7 @@ public class AuthController {
         }
 
 
-    @PostMapping("/signup/bốthiênhạ")
+    @PostMapping("/signup/thanh")
     public ResponseEntity<ApiResponse> registerAdmin(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<ApiResponse>(
@@ -109,7 +109,7 @@ public class AuthController {
 
         Set<Role>roles = new HashSet<>();
 
-        Role adminRole = roleRepository.findByName(RoleName.ROLE_USER)
+        Role adminRole = roleRepository.findByName(RoleName.ADMIN)
                 .orElseThrow(() -> new RuntimeException("Fail! -> Cause:User Role not set."));
         roles.add(adminRole);
 
@@ -145,13 +145,14 @@ public class AuthController {
         //create role user
         Set<Role>roles = new HashSet<>();
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() ->
+        Role userRole = roleRepository.findByName(RoleName.USER).orElseThrow(() ->
                 new RuntimeException("Fail! -> Cause:User Role not set."));
 
+        // gan role cho user
         roles.add(userRole);
 
         user.setRoles(roles);
-
+        //luu user va role vua tao
         User result = userRepository.save(user);
 
         return new ResponseEntity<ApiResponse>(new ApiResponse(true , "User Register Successfully" , null),

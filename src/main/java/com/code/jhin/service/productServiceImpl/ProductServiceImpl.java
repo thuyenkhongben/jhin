@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void save(Product product) {
+    public void saveAndFlush(Product product) {
         productRepository.save(product);
     }
 

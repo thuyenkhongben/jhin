@@ -1,5 +1,8 @@
 package com.code.jhin.model.product;
 
+import com.code.jhin.model.username.User;
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
@@ -12,17 +15,24 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long categoryId;
 
+
+    @NaturalId
     @NotBlank
+    @Column(unique = true)
     private String  categoryName;
 
     @OneToMany(targetEntity = Product.class)
     private List<Product>products;
 
+
     public Category() {
+
     }
-    public Category(@NotBlank String categoryName) {
+    public Category(  @NotBlank String categoryName) {
+
         this.categoryName = categoryName;
     }
+
 
     public Long getCategoryId() {
         return categoryId;
