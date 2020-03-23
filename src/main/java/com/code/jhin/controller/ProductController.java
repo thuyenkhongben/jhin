@@ -87,7 +87,7 @@ public class ProductController {
 
            if (!pictures.isEmpty()){
                for (Picture picture : pictures){
-                   pictureService.remove(picture.getPictureId());
+                   pictureService.remove(picture.getId());
                }
            }
            productService.remove(id);

@@ -2,13 +2,10 @@ package com.code.jhin.service.productServiceImpl;
 
 import com.code.jhin.model.product.Picture;
 import com.code.jhin.repository.productRepository.PictureRepository;
-import com.code.jhin.repository.productRepository.ProductRepository;
 import com.code.jhin.service.productService.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.Action;
-import javax.xml.ws.ServiceMode;
 import java.util.List;
 import java.util.Optional;
 @Service

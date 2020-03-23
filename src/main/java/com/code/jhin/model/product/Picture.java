@@ -1,17 +1,15 @@
 package com.code.jhin.model.product;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "picture")
 public class Picture {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long pictureId;
+    private Long id;
 
-    @NotBlank
-    private String pictureName;
+    private String namePicture;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -19,25 +17,25 @@ public class Picture {
 
     public Picture() {
     }
-
-    public Picture(@NotBlank String pictureName) {
-        this.pictureName = pictureName;
+    public Picture(String namePicture , Product product) {
+        this.namePicture  = namePicture;
+        this.product = product;
     }
 
-    public Long getPictureId() {
-        return pictureId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getPictureName() {
-        return pictureName;
+    public String getNamePicture() {
+        return namePicture;
     }
 
-    public void setPictureName(String pictureName) {
-        this.pictureName = pictureName;
+    public void setNamePicture(String namePicture) {
+        this.namePicture = namePicture;
     }
 
     public Product getProduct() {

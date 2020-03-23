@@ -1,6 +1,5 @@
 package com.code.jhin;
 
-import com.code.jhin.model.product.Picture;
 import com.code.jhin.service.orderServiceImpl.OrderServiceImpl;
 import com.code.jhin.service.orderServie.OrderService;
 import com.code.jhin.service.productService.CategoryService;
@@ -13,7 +12,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.annotation.PostConstruct;

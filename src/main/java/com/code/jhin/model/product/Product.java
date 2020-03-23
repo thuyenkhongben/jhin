@@ -1,11 +1,8 @@
 package com.code.jhin.model.product;
 
 import com.code.jhin.model.order.Order;
-import com.code.jhin.model.product.Category;
-import com.code.jhin.model.product.Picture;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -27,8 +24,10 @@ public class Product {
 
     private String descriptionProduct;
 
-    @OneToMany(targetEntity = Picture.class  , cascade = CascadeType.ALL)
-    private List<Picture>pictures;
+//    @OneToMany(targetEntity = Picture.class  , cascade = CascadeType.ALL)
+//    private String pictures;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Picture> pictures;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -43,7 +42,7 @@ public class Product {
     public Product() {
     }
     public Product( String nameProduct, Double priceProduct , Long amount , String descriptionProduct ,
-                   List<Picture>pictures , Category category, Boolean statusProduct , Order order){
+                   List<Picture> pictures , Category category, Boolean statusProduct , Order order){
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.amount = amount;

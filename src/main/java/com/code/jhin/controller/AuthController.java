@@ -110,7 +110,7 @@ public class AuthController {
         Set<Role>roles = new HashSet<>();
 
         Role adminRole = roleRepository.findByName(RoleName.ADMIN)
-                .orElseThrow(() -> new RuntimeException("Fail! -> Cause:User Role not set."));
+                .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not set."));
         roles.add(adminRole);
 
         user.setRoles(roles);
