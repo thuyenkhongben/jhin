@@ -59,7 +59,7 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id , @RequestBody Product product ) {
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable Long id , @RequestBody Product product ) {
         Optional<Product> product1 = productService.findByIdProduct(id);
 
         if (product1.isPresent() ){
@@ -72,9 +72,11 @@ public class ProductController {
 
             productService.saveAndFlush(product1.get());
 
-            return new ResponseEntity<Product> ( product1.get() , HttpStatus.OK);
+            return new ResponseEntity<ApiResponse> (
+                    new ApiResponse(true , "successfully" , product1), HttpStatus.OK);
         }
-        return new ResponseEntity<Product>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<ApiResponse>(
+                new ApiResponse(false , "loi" , null),HttpStatus.BAD_REQUEST);
     }
 //
     @DeleteMapping("/{id}")
