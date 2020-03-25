@@ -46,11 +46,12 @@ public class ProductController {
         }
     }
     @GetMapping(value = "/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Product> findByProductId(@PathVariable Long id){
+    public ResponseEntity<ApiResponse> findByProductId(@PathVariable Long id){
         Optional<Product> product = productService.findByIdProduct(id);
 
         if (product.isPresent()){
-            return new ResponseEntity<>(product.get(),HttpStatus.OK);
+            return new ResponseEntity<ApiResponse>(
+                    new ApiResponse(true,"successfilly", product),HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -61,8 +62,7 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable Long id , @RequestBody Product product ) {
         Optional<Product> product1 = productService.findByIdProduct(id);
 
-        if (product1.isPresent()){
-            product1.get().setProductId(product.getProductId());
+        if (product1.isPresent() ){
             product1.get().setCategory(product.getCategory());
             product1.get().setDescriptionProduct(product.getDescriptionProduct());
             product1.get().setNameProduct(product.getNameProduct());
@@ -72,9 +72,9 @@ public class ProductController {
 
             productService.saveAndFlush(product1.get());
 
-            return new ResponseEntity<Product>(product1.get(),HttpStatus.OK);
+            return new ResponseEntity<Product> ( product1.get() , HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Product>(HttpStatus.BAD_REQUEST);
     }
 //
     @DeleteMapping("/{id}")
