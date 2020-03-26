@@ -3,6 +3,7 @@ package com.code.jhin.model.product;
 import com.code.jhin.model.order.Order;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,14 +36,18 @@ public class Product {
 
     private Boolean statusProduct;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+//    @ManyToOne
+//    @JoinColumn(name = "order_id")
+//    private Order order;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_oder" , joinColumns = @JoinColumn(name = "orderId") ,
+        inverseJoinColumns = @JoinColumn(name = "productId"))
+    private List<Order>order = new ArrayList<Order>();
 
     public Product() {
     }
     public Product( String nameProduct, Double priceProduct , Long amount , String descriptionProduct ,
-                   List<Picture> pictures , Category category, Boolean statusProduct , Order order){
+                   List<Picture> pictures , Category category, Boolean statusProduct , List<Order>order){
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.amount = amount;
@@ -117,11 +122,11 @@ public class Product {
         this.statusProduct = statusProduct;
     }
 
-    public Order getOrder() {
+    public List<Order> getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(List<Order> order) {
         this.order = order;
     }
 }

@@ -1,10 +1,12 @@
 package com.code.jhin.model.order;
 
 import com.code.jhin.model.product.Product;
+import com.code.jhin.model.username.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,9 +18,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long oderId;
 
-    @NotBlank
-    private  String nameOder;
-
     private Double totalProductPrice;
 
     private Date dateOder;
@@ -28,21 +27,35 @@ public class Order {
     @NotBlank
     private String addressUser;
 
+    @NotBlank
+    private String nameReceiver;
 
-    @OneToMany(targetEntity = Product.class )
-    private List<Product> products;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_oder" , joinColumns = @JoinColumn(name = "orderId") ,
+    inverseJoinColumns = @JoinColumn(name = "productId"))
+    private List<Product> product = new ArrayList<Product>();
+//
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "user_oder" , joinColumns = @JoinColumn(name = "orderId") ,
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    private List<User> users = new ArrayList<User>();
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
     public Order() {
     }
 //
-    public Order(@NotBlank String nameOder , Double totalProductPrice, Date dateOder , Date dateReceive ,
-                 String addressUser , List<Product> products) {
-        this.nameOder = nameOder;
+    public Order( Double totalProductPrice, Date dateOder,
+                 Date dateReceive, @NotBlank String addressUser,
+                  List<Product> product, String nameReceiver) {
         this.totalProductPrice = totalProductPrice;
-        this.dateOder= dateOder;
+        this.dateOder = dateOder;
         this.dateReceive = dateReceive;
         this.addressUser = addressUser;
-        this.products = products;
+        this.product = product;
+        this.nameReceiver = nameReceiver;
     }
 
     public Long getOderId() {
@@ -51,14 +64,6 @@ public class Order {
 
     public void setOderId(Long oderId) {
         this.oderId = oderId;
-    }
-
-    public String getNameOder() {
-        return nameOder;
-    }
-
-    public void setNameOder(String nameOder) {
-        this.nameOder = nameOder;
     }
 
     public Double getTotalProductPrice() {
@@ -93,11 +98,27 @@ public class Order {
         this.addressUser = addressUser;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public String getNameReceiver() {
+        return nameReceiver;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setNameReceiver(String nameReceiver) {
+        this.nameReceiver = nameReceiver;
+    }
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

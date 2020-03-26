@@ -14,8 +14,8 @@ public class PictureServiceImpl implements PictureService {
     PictureRepository pictureRepository;
 
     @Override
-    public List<Picture> findByAllProductId(Long id) {
-        return pictureRepository.findAllByProduct(id);
+    public void findByAllProductId(Long id) {
+         pictureRepository.findAllByProduct(id);
     }
 
     @Override

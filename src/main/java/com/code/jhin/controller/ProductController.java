@@ -83,18 +83,11 @@ public class ProductController {
     public ResponseEntity<Product> deleteProduct(@PathVariable Long id){
        Optional<Product>product = productService.findByIdProduct(id);
 
-       if (product.isPresent()){
-           List<Picture>pictures = pictureService.findByAllProductId(id);
-
-           if (!pictures.isEmpty()){
-               for (Picture picture : pictures){
-                   pictureService.remove(picture.getId());
-               }
-           }
+       if (product.isPresent()) {
+            pictureService.findByAllProductId(id);
            productService.remove(id);
-           return new ResponseEntity<>(HttpStatus.OK);
        }
-       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

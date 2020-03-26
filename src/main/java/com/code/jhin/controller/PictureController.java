@@ -40,7 +40,7 @@ public class PictureController {
     public ResponseEntity<ApiResponse> getPicture ( @PathVariable Long id) {
         Optional<Picture> picture  = pictureService.findByIdPicture(id);
 
-        if (picture == null) {
+        if (picture.isPresent()) {
             return new ResponseEntity<ApiResponse>(
                     new ApiResponse( false , "Fail. Not found data" , null), HttpStatus.BAD_REQUEST
             );
