@@ -16,13 +16,13 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long oderId;
+    private Long orderId;
 
-    private String totalProductPrice;
+    private Double totalProductPrice;
 
-    private String dateOder;
+    private Date dateOder;
 
-    private String dateReceive;
+    private Date dateReceive;
 
     @NotBlank
     private String addressUser;
@@ -31,21 +31,15 @@ public class Order {
     private String nameReceiver;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "product_oder" , joinColumns = @JoinColumn(name = "orderId") ,
+    @ManyToMany
+    @JoinTable(name = "product_order" , joinColumns = @JoinColumn(name = "orderId") ,
     inverseJoinColumns = @JoinColumn(name = "productId"))
     private List<Product> product = new ArrayList<Product>();
 
-//    @ManyToOne
-//    @JoinColumn
-//    private User user;
-
     public Order() {
     }
-////  this.product = product;
-//
-    public Order( String totalProductPrice, String dateOder,
-                 String dateReceive,List<Product> product , @NotBlank String addressUser,
+    public Order( Double totalProductPrice, Date dateOder,
+                 Date dateReceive,List<Product> product , @NotBlank String addressUser,
                   @NotBlank String nameReceiver ) {
         this.totalProductPrice = totalProductPrice;
         this.dateOder = dateOder;
@@ -55,35 +49,35 @@ public class Order {
         this.nameReceiver = nameReceiver;
     }
 
-    public Long getOderId() {
-        return oderId;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setOderId(Long oderId) {
-        this.oderId = oderId;
+    public void setOrderId(Long oderId) {
+        this.orderId = oderId;
     }
 
-    public String getTotalProductPrice() {
+    public Double getTotalProductPrice() {
         return totalProductPrice;
     }
 
-    public void setTotalProductPrice(String totalProductPrice) {
+    public void setTotalProductPrice(Double totalProductPrice) {
         this.totalProductPrice = totalProductPrice;
     }
 
-    public String getDateOder() {
+    public Date getDateOder() {
         return dateOder;
     }
 
-    public void setDateOder(String dateOder) {
+    public void setDateOder(Date dateOder) {
         this.dateOder = dateOder;
     }
 
-    public String getDateReceive() {
+    public Date getDateReceive() {
         return dateReceive;
     }
 
-    public void setDateReceive(String dateReceive) {
+    public void setDateReceive(Date dateReceive) {
         this.dateReceive = dateReceive;
     }
 

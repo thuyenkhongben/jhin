@@ -39,15 +39,15 @@ public class Product {
 //    @ManyToOne
 //    @JoinColumn(name = "order_id")
 //    private Order order;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "product_oder" , joinColumns = @JoinColumn(name = "orderId") ,
-        inverseJoinColumns = @JoinColumn(name = "productId"))
-    private List<Order>order = new ArrayList<Order>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "product_oder" , joinColumns = @JoinColumn(name = "orderId") ,
+//        inverseJoinColumns = @JoinColumn(name = "productId"))
+//    private List<Order>order = new ArrayList<Order>();
 
     public Product() {
     }
     public Product( String nameProduct, Double priceProduct , Long amount , String descriptionProduct ,
-                   List<Picture> pictures , Category category, Boolean statusProduct , List<Order>order){
+                   List<Picture> pictures , Category category, Boolean statusProduct ){
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.amount = amount;
@@ -55,7 +55,6 @@ public class Product {
         this.pictures = pictures;
         this.category = category;
         this.statusProduct = statusProduct;
-        this.order = order;
     }
 
     public Long getAmount() {
@@ -122,11 +121,4 @@ public class Product {
         this.statusProduct = statusProduct;
     }
 
-    public List<Order> getOrder() {
-        return order;
-    }
-
-    public void setOrder(List<Order> order) {
-        this.order = order;
-    }
 }
