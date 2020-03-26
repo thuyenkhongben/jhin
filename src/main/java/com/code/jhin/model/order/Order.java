@@ -18,11 +18,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long oderId;
 
-    private Double totalProductPrice;
+    private String totalProductPrice;
 
-    private Date dateOder;
+    private String dateOder;
 
-    private Date dateReceive;
+    private String dateReceive;
 
     @NotBlank
     private String addressUser;
@@ -35,21 +35,18 @@ public class Order {
     @JoinTable(name = "product_oder" , joinColumns = @JoinColumn(name = "orderId") ,
     inverseJoinColumns = @JoinColumn(name = "productId"))
     private List<Product> product = new ArrayList<Product>();
-//
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "user_oder" , joinColumns = @JoinColumn(name = "orderId") ,
-//            inverseJoinColumns = @JoinColumn(name = "user_id"))
-//    private List<User> users = new ArrayList<User>();
-    @ManyToOne
-    @JoinColumn
-    private User user;
+
+//    @ManyToOne
+//    @JoinColumn
+//    private User user;
 
     public Order() {
     }
+////  this.product = product;
 //
-    public Order( Double totalProductPrice, Date dateOder,
-                 Date dateReceive, @NotBlank String addressUser,
-                  List<Product> product, String nameReceiver) {
+    public Order( String totalProductPrice, String dateOder,
+                 String dateReceive,List<Product> product , @NotBlank String addressUser,
+                  @NotBlank String nameReceiver ) {
         this.totalProductPrice = totalProductPrice;
         this.dateOder = dateOder;
         this.dateReceive = dateReceive;
@@ -66,27 +63,27 @@ public class Order {
         this.oderId = oderId;
     }
 
-    public Double getTotalProductPrice() {
+    public String getTotalProductPrice() {
         return totalProductPrice;
     }
 
-    public void setTotalProductPrice(Double totalProductPrice) {
+    public void setTotalProductPrice(String totalProductPrice) {
         this.totalProductPrice = totalProductPrice;
     }
 
-    public Date getDateOder() {
+    public String getDateOder() {
         return dateOder;
     }
 
-    public void setDateOder(Date dateOder) {
+    public void setDateOder(String dateOder) {
         this.dateOder = dateOder;
     }
 
-    public Date getDateReceive() {
+    public String getDateReceive() {
         return dateReceive;
     }
 
-    public void setDateReceive(Date dateReceive) {
+    public void setDateReceive(String dateReceive) {
         this.dateReceive = dateReceive;
     }
 
@@ -114,11 +111,11 @@ public class Order {
         this.product = product;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

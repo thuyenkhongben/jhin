@@ -40,7 +40,7 @@ public class ProductController {
         try {
             productService.saveAndFlush(product);
             return new ResponseEntity<ApiResponse>(
-                    new ApiResponse(true , "Create successufully " , product),HttpStatus.CREATED);
+                    new ApiResponse(true , "Create successfully " , product),HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<ApiResponse>(HttpStatus.BAD_REQUEST);
         }

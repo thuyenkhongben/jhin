@@ -54,6 +54,7 @@ public class User  {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(name = "user_oder" , joinColumns = @JoinColumn(name = "orderId") ,
 //            inverseJoinColumns = @JoinColumn(name = "user_id"))
