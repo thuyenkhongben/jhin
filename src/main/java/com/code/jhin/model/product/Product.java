@@ -25,8 +25,6 @@ public class Product {
 
     private String descriptionProduct;
 
-//    @OneToMany(targetEntity = Picture.class  , cascade = CascadeType.ALL)
-//    private String pictures;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Picture> pictures;
 
@@ -35,14 +33,6 @@ public class Product {
     private Category category;
 
     private Boolean statusProduct;
-
-//    @ManyToOne
-//    @JoinColumn(name = "order_id")
-//    private Order order;
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "product_oder" , joinColumns = @JoinColumn(name = "orderId") ,
-//        inverseJoinColumns = @JoinColumn(name = "productId"))
-//    private List<Order>order = new ArrayList<Order>();
 
     public Product() {
     }

@@ -9,8 +9,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 @Transactional
 public interface PictureRepository extends JpaRepository<Picture, Long> {
-
-
     @Modifying
     @Query(value = "DELETE FROM picture  where product_id =?1" , nativeQuery = true)
     void findAllByProduct(Long id);
